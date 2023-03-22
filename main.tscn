@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Map.gd" id="1_plghq"]
 [ext_resource type="TileSet" uid="uid://dkxtqgf517uab" path="res://tiles.tres" id="1_svoes"]
 [ext_resource type="Script" path="res://main.gd" id="1_uw3b1"]
-[ext_resource type="PackedScene" uid="uid://ctaptwcrr0sss" path="res://Player.tscn" id="4_terru"]
+[ext_resource type="PackedScene" uid="uid://ca0csgf8oop8e" path="res://Player.tscn" id="4_terru"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uw3b1")
