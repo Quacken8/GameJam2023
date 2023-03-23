@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4css1tb87qsx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykk0l"]
+size = Vector2(172, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4uxg"]
+size = Vector2(40, 41)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(89, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(85, 20.5)
+shape = SubResource("RectangleShape2D_ykk0l")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_right = 171.0
+offset_bottom = 40.0
+color = Color(0.87451, 0.509804, 0.435294, 1)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(76, 129)
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
+offset_right = 183.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(21, 20.5)
+shape = SubResource("RectangleShape2D_q4uxg")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+position = Vector2(98, 19)
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+length = 128.0
+stiffness = 64.0
+
+[node name="DampedSpringJoint2D2" type="DampedSpringJoint2D" parent="."]
+position = Vector2(250, 30)
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+length = 128.0
+stiffness = 0.1

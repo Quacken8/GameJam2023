@@ -11,10 +11,12 @@ size = Vector2(2, 2)
 [node name="Bullet" type="RigidBody2D"]
 collision_layer = 3
 collision_mask = 3
-inertia = 1.07
+mass = 0.1
+inertia = 1.59
 physics_material_override = SubResource("PhysicsMaterial_onjmt")
 gravity_scale = 0.0
 script = ExtResource("1_r1aph")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7ueg6")
@@ -24,6 +26,7 @@ offset_left = -3.0
 offset_top = -3.0
 offset_right = 3.0
 offset_bottom = 3.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Lifetimer" type="Timer" parent="."]
 wait_time = 0.383

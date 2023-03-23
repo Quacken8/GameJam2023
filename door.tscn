@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8d7whudl77uq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t1pep"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lod2n"]
+radius = 9.0
+height = 62.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jw4of"]
+
+[node name="Door" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+mass = 0.8
+inertia = 1.53
+physics_material_override = SubResource("PhysicsMaterial_t1pep")
+gravity_scale = 0.0
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
+offset_right = 18.0
+offset_bottom = 63.0
+color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(9, 32)
+shape = SubResource("CapsuleShape2D_lod2n")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(9, 4)
+node_a = NodePath("../RigidBody2D")
+node_b = NodePath("../StaticBody2D")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(9, 4)
+collision_layer = 0
+collision_mask = 0
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_jw4of")

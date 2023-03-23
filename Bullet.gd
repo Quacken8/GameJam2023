@@ -11,12 +11,13 @@ func _ready():
 func _physics_process(delta):
 	
 	var collision = move_and_collide(linear_velocity*delta)
-	if is_instance_valid(collision) and $Lifetimer.is_stopped():
-		if collision.get_collider().is_in_group("Enemies"): # check if hit enemy
-			collision.get_collider().hit()
+	if is_instance_valid(collision):
+		var collider = collision.get_collider()
+		if collider.is_in_group("Enemies"): # check if hit enemy
+			collider.hit()
 			queue_free()
-		elif collision.get_collider().is_in_group("Bullets"): pass
-		else: $Lifetimer.start(lifetime)
+		elif collider.is_in_group("Bullets"): pass
+		elif $Lifetimer.is_stopped(): $Lifetimer.start(lifetime)
 
 
 
