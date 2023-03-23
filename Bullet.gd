@@ -1,9 +1,7 @@
 extends RigidBody2D
 
-var velocity = Vector2.ZERO
 var numberOCollisions = 0
 var lifetime = 0.3
-@onready var timerNode = get_node("Lifetimer")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -11,12 +9,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	print(position)
-	var collision = move_and_collide(velocity*delta)
-	if collision != null and timerNode.paused:
-		if collision.get_collider() == null: # check if hit enemy
+	
+	var collision = move_and_collide(linear_velocity*delta)
+	if is_instance_valid(collision) and $Lifetimer.is_stopped():
+		if collision.get_collider().is_in_group("Enemies"): # check if hit enemy
+			collision.get_collider().hit()
 			queue_free()
-		else: timerNode.start(lifetime)
+		elif collision.get_collider().is_in_group("Bullets"): pass
+		else: $Lifetimer.start(lifetime)
 
 
 

@@ -4,11 +4,11 @@ const lerpWeight = 7e-1
 var mousePosition = Vector2.ZERO
 var toMouse = Vector2.ZERO
 var angleToMouse = 0.0
-const muzzleVelocity = 0
+const muzzleVelocity = 700
 const bulletSpread = PI/6
 const bulletNumber = 4
 
-var bulletScene = preload("res://Bullet.gd")
+var bulletScene = preload("res://bullet.tscn")
 @onready var muzzlePozition = get_node("Gun/Muzzless").position
 
 func _ready():
@@ -42,7 +42,9 @@ func shoot():
 	for i in range(bulletNumber):
 		var currentAngle =  (i-0.5) * bulletSpread/bulletNumber
 		var directionVector = toMouse.rotated(currentAngle)
-		var bulletInstance = bulletScene.new()
-		bulletInstance.velocity = directionVector.normalized()*muzzleVelocity
-		bulletInstance.position = position + muzzlePozition
+		var bulletInstance = bulletScene.instantiate()
+		bulletInstance.set_linear_velocity(directionVector.normalized()*muzzleVelocity)
+		bulletInstance.position = position + muzzlePozition.rotated(rotation)
+		bulletInstance.add_to_group("Bullets")
 		get_parent().add_child(bulletInstance)
+
