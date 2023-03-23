@@ -37,7 +37,6 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		mousePosition = event.global_position
 
-
 func shoot():
 	for i in range(bulletNumber):
 		var currentAngle =  (i-0.5) * bulletSpread/bulletNumber
